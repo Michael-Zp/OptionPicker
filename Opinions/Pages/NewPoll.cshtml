@@ -1,0 +1,34 @@
+﻿@page
+@model NewPollModel
+@{
+    ViewData["Title"] = "NewPoll";
+}
+
+<script language="javascript" type="text/javascript">
+
+    function UpdateOnInputChoice(id) {
+
+        var me = document.createElement("choice" + id)
+
+        if (me.value != "") {
+
+        }
+
+        var nextEntry = document.createElement("input")
+        nextEntry.type = "text"
+        nextEntry.id = "choice1"
+
+        document.getElementById("choices").appendChild(nextEntry)
+    }     
+
+</script>
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+    <form action="" id="choiceList">
+        <div id="choices">
+            <input type="text" id="choice0" oninput="UpdateOnInputChoice(0)" /><br />
+        </div>
+        <input type="submit" id="submitNewPoll" value="Create poll" /><br />
+    </form>
+</div>
