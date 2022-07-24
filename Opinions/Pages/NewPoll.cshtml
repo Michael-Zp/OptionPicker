@@ -6,19 +6,28 @@
 
 <script language="javascript" type="text/javascript">
 
+    var allPreviousStates = {}
+
     function UpdateOnInputChoice(id) {
 
-        var me = document.createElement("choice" + id)
+        if (!(id in allPreviousStates)) {
+            allPreviousStates[id] = ""
+        }
+        
+        var me = document.getElementById("choice" + id)
 
-        if (me.value != "") {
-
+        if (allPreviousStates[id] == "" && me.value != "") {
+            var nextEntry = document.createElement("input")
+            nextEntry.type = "text"
+            nextEntry.id = "choice" + (id + 1)
+            nextEntry.oninput = "UpdateOnInputChoice(" + nextEntry.id + ")"
+            document.getElementById("choices").appendChild(nextEntry)
+        }
+        else if (allPreviousStates[id] != "" && me.value == "") {
+            // Delete it maybe
         }
 
-        var nextEntry = document.createElement("input")
-        nextEntry.type = "text"
-        nextEntry.id = "choice1"
-
-        document.getElementById("choices").appendChild(nextEntry)
+        allPreviousStates[id] = me.value
     }     
 
 </script>
